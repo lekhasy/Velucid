@@ -24,7 +24,7 @@ spec:
     spec:
       initContainers:
         - name: run-migrations
-          image: ghcr.io/lekhasy/velucid/migrations:bf8f383
+          image: ghcr.io/lekhasy/velucid/migrations:a3b1a14
           imagePullPolicy: IfNotPresent
           env:
             - name: POSTGRES_USERNAME
