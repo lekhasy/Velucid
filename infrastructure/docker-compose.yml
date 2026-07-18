@@ -97,7 +97,7 @@ services:
   # # ─── Orleans Silo (.NET backend — API + Grains co-hosted) ──────
   # # DISABLED: Uncomment when the silo Docker image is ready.
   # silo:
-  #   image: ghcr.io/lekhasy/vut/silo:latest
+  #   image: ghcr.io/lekhasy/velucid/silo:latest
   #   container_name: velucid-silo
   #   build:
   #     context: ../backend/src/Velucid.Silo
@@ -140,7 +140,7 @@ services:
   # # ─── Projector Service (background worker — KurrentDB → PostgreSQL) ──
   # # DISABLED: Uncomment when the projector-service Docker image is ready.
   # projector-service:
-  #   image: ghcr.io/lekhasy/vut/projector-service:latest
+  #   image: ghcr.io/lekhasy/velucid/projector-service:latest
   #   container_name: velucid-projector-service
   #   build:
   #     context: ../backend/src/Velucid.ProjectorService
