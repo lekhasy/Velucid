@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Orleans.TestingHost;
 using Velucid.ReadModel;
 using Velucid.Silo.Authorization;
+using Velucid.Silo.Events;
 using Velucid.Silo.Services;
 
 namespace Velucid.Silo.Tests.Infrastructure;

@@ -50,19 +50,11 @@ builder.Services.AddSingleton<IEventStreamClient, KurrentDbStreamClient>();
 // ─── OTP Store (Redis-backed) ────────────────────────────────────
 builder.Services.AddSingleton<IOtpStore, RedisOtpStore>();
 
-// ─── Email Service (Resend in production, console fallback in dev) ──
-builder.Services.Configure<ResendOptions>(
-    builder.Configuration.GetSection(ResendOptions.SectionName));
-var resendApiKey = builder.Configuration["Resend:ApiKey"];
-if (!string.IsNullOrWhiteSpace(resendApiKey))
-{
-    builder.Services.AddSingleton<IResend>(_ => new ResendClient(resendApiKey));
-    builder.Services.AddSingleton<IEmailService, ResendEmailService>();
-}
-else
-{
-    builder.Services.AddSingleton<IEmailService, ConsoleEmailService>();
-}
+// ─── Email Service ─────────────────────────────────────────────
+// Resend integration is not wired yet (SDK call site doesn't match
+// the installed Resend 0.1.4 constructor). Falling back to
+// ConsoleEmailService — emails print to stdout in dev.
+builder.Services.AddSingleton<IEmailService, ConsoleEmailService>();
 
 // ─── Read Model (PostgreSQL) ────────────────────────────────────
 var readModelConnectionString = builder.Configuration["ConnectionStrings:PostgreSQL"]
