@@ -1,0 +1,57 @@
+# .NET
+bin/
+obj/
+*.user
+*.suo
+*.cache
+*.log
+*.lscache
+
+# Node.js / Frontend
+node_modules/
+dist/
+.output/
+.astro/
+
+# IDE
+.vs/
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment / Secrets
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+
+# Docker
+docker-compose.override.yml
+
+# NuGet
+*.nupkg
+packages/
+
+# Build artifacts
+publish/
+frontend/playwright-report/*
+frontend/test-results/*
+apps/web/playwright-report/*
+apps/web/test-results/*
+
+# Nx
+.nx/
+nx-cloud.env
+*.tsbuildinfo
+tmp/
+
+# Bun
+bun.lockb
+
