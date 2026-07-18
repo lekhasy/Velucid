@@ -163,7 +163,7 @@ services:
 
   # ─── Frontend (Astro.js SSR + BFF) ──────────────────────────────
   frontend:
-    image: ghcr.io/lekhasy/vut/frontend:latest
+    image: ghcr.io/lekhasy/velucid/web:latest
     container_name: velucid-frontend
     build:
       context: ../frontend

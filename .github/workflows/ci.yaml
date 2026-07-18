@@ -42,7 +42,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_PREFIX: ghcr.io/lekhasy/vut
+  IMAGE_PREFIX: ghcr.io/lekhasy/velucid
 
 permissions:
   contents: write
@@ -250,7 +250,7 @@ jobs:
         if: needs.build-silo.result == 'success'
         run: |
           SHA="${GITHUB_SHA::7}"
-          sed -i "s|image: ghcr.io/lekhasy/vut/silo:.*|image: ghcr.io/lekhasy/vut/silo:${SHA}|" \
+          sed -i "s|image: ghcr.io/lekhasy/velucid/silo:.*|image: ghcr.io/lekhasy/velucid/silo:${SHA}|" \
             infrastructure/k8s/silo/deployment.yaml
 
       - name: Update projector image tag (main container)
@@ -260,14 +260,14 @@ jobs:
           # Main container points at the .NET projector-service image
           # (built by build-projector). The init container (migrations)
           # below is updated by the migrations step.
-          sed -i "s|image: ghcr.io/lekhasy/vut/projector-service:.*|image: ghcr.io/lekhasy/vut/projector-service:${SHA}|" \
+          sed -i "s|image: ghcr.io/lekhasy/velucid/projector-service:.*|image: ghcr.io/lekhasy/velucid/projector-service:${SHA}|" \
             infrastructure/k8s/projector-service/deployment.yaml
 
       - name: Update migrations image tag
         if: needs.build-migrations.result == 'success'
         run: |
           SHA="${GITHUB_SHA::7}"
-          sed -i "s|image: ghcr.io/lekhasy/vut/migrations:.*|image: ghcr.io/lekhasy/vut/migrations:${SHA}|" \
+          sed -i "s|image: ghcr.io/lekhasy/velucid/migrations:.*|image: ghcr.io/lekhasy/velucid/migrations:${SHA}|" \
             infrastructure/k8s/projector-service/deployment.yaml
 
       - name: Update web image tag
@@ -277,7 +277,7 @@ jobs:
           # The frontend deployment file is unchanged in name; the image
           # inside it switches from `frontend:` to `web:`. The deployment
           # resource (velucid-frontend) keeps its name until 4.5 renames it.
-          sed -i "s#image: ghcr.io/lekhasy/vut/\(frontend\|web\):.*#image: ghcr.io/lekhasy/vut/web:${SHA}#" \
+          sed -i "s#image: ghcr.io/lekhasy/velucid/\(frontend\|web\):.*#image: ghcr.io/lekhasy/velucid/web:${SHA}#" \
             infrastructure/k8s/frontend/deployment.yaml
 
       - name: Commit manifest changes
